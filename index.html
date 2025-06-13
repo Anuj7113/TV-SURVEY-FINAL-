@@ -284,31 +284,43 @@
         // Get user location
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        document.getElementById('latitude').value = position.coords.latitude;
-                        document.getElementById('longitude').value = position.coords.longitude;
-                        
-                        document.getElementById('locationStatus').innerHTML = `
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Location captured: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}</span>
-                        `;
-                    },
-                    function(error) {
-                        document.getElementById('locationStatus').innerHTML = `
-                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                            <span>Location permission denied. Please enable location services.</span>
-                        `;
-                        document.getElementById('locationStatus').classList.add('pulse');
-                    }
-                );
-            } else {
-                document.getElementById('locationStatus').innerHTML = `
-                    <i class="fas fa-exclamation-circle text-red-500 mr-2"></i>
-                    <span>Geolocation is not supported by this browser.</span>
-                `;
-            }
+               navigator.geolocation.getCurrentPosition(
+    function(position) {
+        document.getElementById('latitude').value = position.coords.latitude;
+        document.getElementById('longitude').value = position.coords.longitude;
+        document.getElementById('locationStatus').innerHTML = `
+            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+            <span>Location captured: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}</span>
+        `;
+    },
+    function(error) {
+        let message = '';
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                message = "Location permission denied. Please allow access.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                message = "Location unavailable. Try again.";
+                break;
+            case error.TIMEOUT:
+                message = "Location timed out. Try again.";
+                break;
+            default:
+                message = "An unknown error occurred.";
         }
+
+        document.getElementById('locationStatus').innerHTML = `
+            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+            <span>${message}</span>
+        `;
+        document.getElementById('locationStatus').classList.add('pulse');
+    },
+    {
+        enableHighAccuracy: true,
+        timeout: 10000,  // ⏱️ 10-second limit
+        maximumAge: 0
+    }
+);
 
         // Form submission handler
         document.getElementById('tvServiceForm').addEventListener('submit', function(e) {
