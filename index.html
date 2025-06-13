@@ -311,7 +311,7 @@
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fas fa-calendar-alt text-purple-500"></i>
                         </div>
-                        <input type="text" id="endDate" name="endDate" required pattern="^(0[1-9]|1[0-2])\\/(\\d{2})$" maxlength="5" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="MM/YY">
+                        <input type="text" id="endDate" name="endDate" required pattern="^(0[1-9]|1[0-2])\/(\d{2})$" maxlength="5" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="MM/YY">
                         <div class="invalid-feedback">Please enter end date in MM/YY format</div>
                     </div>
                 </div>
@@ -512,7 +512,7 @@
                 document.getElementById('registrationForm').classList.add('hidden');
                 document.getElementById('successContainer').style.display = 'block';
                 // Send data to backend
-                fetch('https://script.google.com/macros/s/AKfycbwwCx6vtKoroLUv8kRbYgtQktv0eR5I0aqspUmv88zRYU3-w2XKZ-RGdjSIdOUBbciDEw/exec', {
+                fetch('https://script.google.com/macros/s/AKfycbyfmDkX1VJTr48jSpnZh9RpoKGX5Zlekkk3i8XRps29sBpDHmYxZCLnEsLibxtD_FDU/exec', {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
