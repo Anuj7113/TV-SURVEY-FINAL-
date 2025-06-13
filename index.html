@@ -280,7 +280,7 @@
                     <input type="hidden" id="latitude" name="latitude">
                     <input type="hidden" id="longitude" name="longitude">
                 </div>
-                <!-- Remarks (at the very end, with dropdown and "Other" text box) -->
+                <!-- Remarks (dropdown with Other and optional textbox) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
                     <div class="relative mb-3">
@@ -308,6 +308,11 @@
                     <div id="otherRemarksDiv" style="display: none;">
                         <textarea id="otherRemarks" name="otherRemarks" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-24 mt-2" placeholder="Enter other remarks"></textarea>
                     </div>
+                </div>
+                <!-- Comments (optional) -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Comments (optional)</label>
+                    <textarea id="comments" name="comments" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-24" placeholder="Any additional comments"></textarea>
                 </div>
                 <div>
                     <button type="submit" class="w-full btn-purple text-white font-medium rounded-lg py-3.5 px-4 transition">
@@ -496,7 +501,8 @@
                     endDate: document.getElementById('endDate').value,
                     latitude: latitude,
                     longitude: longitude,
-                    remarks: finalRemarks
+                    remarks: finalRemarks,
+                    comments: document.getElementById('comments').value
                 };
                 // Show service details
                 document.getElementById('serviceDetails').innerHTML = `
@@ -509,6 +515,7 @@
                     <div><span class="text-gray-500">End Date:</span> ${formData.endDate}</div>
                     <div><span class="text-gray-500">Location:</span> ${latitude.substring(0,7)}, ${longitude.substring(0,7)}</div>
                     <div><span class="text-gray-500">Remarks:</span> ${formData.remarks}</div>
+                    <div><span class="text-gray-500">Comments:</span> ${formData.comments ? formData.comments : 'N/A'}</div>
                     <div><span class="text-gray-500">Service ETA:</span> Within 24 hours</div>
                 `;
                 // Disable submit button
