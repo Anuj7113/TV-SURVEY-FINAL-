@@ -355,24 +355,33 @@
             }
             
             // Connection Type select
-            const connectionType = form.querySelector('#connectionType');
-            if (!connectionType.value) {
-                document.getElementById('connectionError').style.display = 'block';
-                isValid = false;
-                if (!firstInvalid) firstInvalid = connectionType;
-            } else {
-                document.getElementById('connectionError').style.display = 'none';
-            }
-            
-            if (!isValid) {
-                // Scroll to first invalid element
-                if (firstInvalid) {
-                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    firstInvalid.focus();
-                }
-                return;
-            }
-            
+            <script>
+window.addEventListener('DOMContentLoaded', function () {
+    // Get connection type
+    let connectionType = 'unknown';
+
+    if (navigator.connection) {
+        connectionType = navigator.connection.effectiveType;
+    }
+
+    // Set connection type in hidden input
+    const connInput = document.getElementById('connection_type');
+    if (connInput) {
+        connInput.value = connectionType;
+    }
+
+    // Get geolocation
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        }, function (error) {
+            console.error('Geolocation error:', error);
+        });
+    }
+});
+</script>
+
             // Check location was captured
             const latitude = document.getElementById('latitude').value;
             const longitude = document.getElementById('longitude').value;
