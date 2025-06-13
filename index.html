@@ -259,8 +259,9 @@
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fas fa-calendar-alt text-purple-500"></i>
                         </div>
-                        <input type="text" id="endDate" name="endDate" required pattern="^(0[1-9]|1[0-2])\/(\d{2})$" maxlength="5" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="MM/YY">
-                        <div class="invalid-feedback">Please enter end date in MM/YY format</div>
+                        <input type="text" id="endDate" name="endDate" required pattern="^(0[1-9]|1[0-2])\/(\d{2})$" maxlength="5" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="MM/YY" autocomplete="off">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">/</span>
+                        <div class="invalid-feedback">Please enter end date in MM/YY format (with slash)</div>
                     </div>
                 </div>
                 <!-- Location -->
@@ -279,15 +280,33 @@
                     <input type="hidden" id="latitude" name="latitude">
                     <input type="hidden" id="longitude" name="longitude">
                 </div>
-                <!-- Remarks (at the very end) -->
+                <!-- Remarks (at the very end, with dropdown and "Other" text box) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 pt-3">
+                    <div class="relative mb-3">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fas fa-comment text-purple-500"></i>
                         </div>
-                        <textarea id="remarks" name="remarks" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none h-32" placeholder="Describe your problem or service needed"></textarea>
-                        <div class="invalid-feedback">Please enter remarks</div>
+                        <select id="remarksDropdown" name="remarksDropdown" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                            <option value="" disabled selected>Select a remark</option>
+                            <option value="NANTAR SANGU">NANTAR SANGU</option>
+                            <option value="NAHI LAWAYCHA">NAHI LAWAYCHA</option>
+                            <option value="NAHI">NAHI</option>
+                            <option value="NAHI LAWAT">NAHI LAWAT</option>
+                            <option value="HOME LOCKED">HOME LOCKED</option>
+                            <option value="NANTR SANGU">NANTR SANGU</option>
+                            <option value="UCN">UCN</option>
+                            <option value="NO TV AAHE">NO TV AAHE</option>
+                            <option value="NAHI PAHIJE">NAHI PAHIJE</option>
+                            <option value="GHAR VIRAN AHE">GHAR VIRAN AHE</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </div>
+                    </div>
+                    <div id="otherRemarksDiv" style="display: none;">
+                        <textarea id="otherRemarks" name="otherRemarks" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-24 mt-2" placeholder="Enter other remarks"></textarea>
                     </div>
                 </div>
                 <div>
@@ -383,6 +402,20 @@
                 let val = e.target.value;
                 e.target.value = val.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
             });
+
+            // Remarks dropdown logic
+            const remarksDropdown = document.getElementById('remarksDropdown');
+            const otherRemarksDiv = document.getElementById('otherRemarksDiv');
+            remarksDropdown.addEventListener('change', function() {
+                if (this.value === 'Other') {
+                    otherRemarksDiv.style.display = 'block';
+                    document.getElementById('otherRemarks').setAttribute('required', 'required');
+                } else {
+                    otherRemarksDiv.style.display = 'none';
+                    document.getElementById('otherRemarks').removeAttribute('required');
+                }
+            });
+
             document.getElementById('tvServiceForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 let isValid = true;
@@ -432,6 +465,20 @@
                     document.getElementById('locationStatus').classList.add('pulse');
                     return;
                 }
+                // Remarks validation
+                let remarksValue = remarksDropdown.value;
+                let finalRemarks = remarksValue;
+                if (remarksValue === "Other") {
+                    const otherRemarks = document.getElementById('otherRemarks').value.trim();
+                    if (!otherRemarks) {
+                        document.getElementById('otherRemarks').classList.add('border-red-500');
+                        isValid = false;
+                        if (!firstInvalid) firstInvalid = document.getElementById('otherRemarks');
+                    } else {
+                        document.getElementById('otherRemarks').classList.remove('border-red-500');
+                        finalRemarks = otherRemarks;
+                    }
+                }
                 if (!isValid) {
                     if (firstInvalid && firstInvalid.scrollIntoView) firstInvalid.scrollIntoView({behavior: "smooth"});
                     return;
@@ -449,7 +496,7 @@
                     endDate: document.getElementById('endDate').value,
                     latitude: latitude,
                     longitude: longitude,
-                    remarks: document.getElementById('remarks').value
+                    remarks: finalRemarks
                 };
                 // Show service details
                 document.getElementById('serviceDetails').innerHTML = `
