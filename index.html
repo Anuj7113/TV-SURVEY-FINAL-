@@ -372,16 +372,21 @@
             }
             
             // Prepare form data
-            const formData = {
-                name: document.getElementById('name').value,
-                address: document.getElementById('address').value,
-                phone: document.getElementById('phone').value,
-                remarks: document.getElementById('remarks').value,
-                tvType: document.querySelector('input[name="tvType"]:checked').value,
-                connectionType: document.getElementById('connectionType').value,
-                latitude: latitude,
-                longitude: longitude
-            };
+            const tvType = document.querySelector('input[name="tvType"]:checked');
+const connectionType = document.getElementById('connectionType');
+
+const formData = {
+    name: document.getElementById('name').value,
+    address: document.getElementById('address').value,
+    phone: document.getElementById('phone').value,
+    remarks: document.getElementById('remarks').value,
+    tvType: tvType ? tvType.value : '',
+    connectionType: connectionType.value || '',
+    latitude: document.getElementById('latitude').value,
+    longitude: document.getElementById('longitude').value
+};
+
+            
             
             // Prepare service details for display
             document.getElementById('serviceDetails').innerHTML = `
