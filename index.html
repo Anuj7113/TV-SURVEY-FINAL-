@@ -125,41 +125,44 @@
                         <div class="invalid-feedback">Please enter your full name</div>
                     </div>
                 </div>
-                <!-- House Number -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">House Number</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-home text-purple-500"></i>
+                <!-- House Number and Ward Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- House Number -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">House Number</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-home text-purple-500"></i>
+                            </div>
+                            <input type="number" id="houseNumber" name="houseNumber" required maxlength="3" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="123" oninput="this.value=this.value.slice(0,3)">
+                            <div class="invalid-feedback">Please enter house number</div>
                         </div>
-                        <input type="number" id="houseNumber" name="houseNumber" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="e.g. 123">
-                        <div class="invalid-feedback">Please enter house number</div>
                     </div>
-                </div>
-                <!-- Ward/Colony Selection (Dropdown) -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Select your Ward/Colony</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-city text-purple-500"></i>
+                    <!-- Ward/Colony Selection (Dropdown) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Ward/Colony</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-city text-purple-500"></i>
+                            </div>
+                            <select id="ward" name="ward" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                                <option value="" disabled selected>Select ward/colony</option>
+                                <option value="Civil Ward">Civil Ward</option>
+                                <option value="Toli Ward">Toli Ward</option>
+                                <option value="Panchasheel Ward">Panchasheel Ward</option>
+                                <option value="Shivaji Ward">Shivaji Ward</option>
+                                <option value="Nursery Colony">Nursery Colony</option>
+                                <option value="Srinagar Colony">Srinagar Colony</option>
+                                <option value="Pragati Colony">Pragati Colony</option>
+                                <option value="Sendurwafa">Sendurwafa</option>
+                                <option value="Jamnapur">Jamnapur</option>
+                                <option value="Khairlanji">Khairlanji</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </div>
+                            <div class="invalid-feedback" id="wardError">Please select your ward/colony</div>
                         </div>
-                        <select id="ward" name="ward" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
-                            <option value="" disabled selected>Select your ward/colony</option>
-                            <option value="Civil Ward">Civil Ward</option>
-                            <option value="Toli Ward">Toli Ward</option>
-                            <option value="Panchasheel Ward">Panchasheel Ward</option>
-                            <option value="Shivaji Ward">Shivaji Ward</option>
-                            <option value="Nursery Colony">Nursery Colony</option>
-                            <option value="Srinagar Colony">Srinagar Colony</option>
-                            <option value="Pragati Colony">Pragati Colony</option>
-                            <option value="Sendurwafa">Sendurwafa</option>
-                            <option value="Jamnapur">Jamnapur</option>
-                            <option value="Khairlanji">Khairlanji</option>
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <i class="fas fa-chevron-down text-gray-500"></i>
-                        </div>
-                        <div class="invalid-feedback" id="wardError">Please select your ward/colony</div>
                     </div>
                 </div>
                 <!-- Address -->
@@ -219,101 +222,110 @@
                         </div>
                     </div>
                 </div>
-                <!-- TV Connection -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Which TV connection do you have?<span class="text-red-500">*</span></label>
-                    <div class="invalid-feedback mb-2" id="connectionError">Please select your TV connection</div>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-satellite-dish text-purple-500"></i>
+                <!-- TV Connection and Charge Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- TV Connection -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">TV Connection<span class="text-red-500">*</span></label>
+                        <div class="invalid-feedback mb-2" id="connectionError">Please select your TV connection</div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-satellite-dish text-purple-500"></i>
+                            </div>
+                            <select id="connectionType" name="connectionType" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                                <option value="" disabled selected>Select TV connection</option>
+                                <option value="D2H">D2H</option>
+                                <option value="Airtel">Airtel</option>
+                                <option value="Jio">Jio</option>
+                                <option value="Tata Sky">Tata Sky</option>
+                                <option value="UCN">UCN</option>
+                                <option value="Free Dish">Free Dish</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </div>
                         </div>
-                        <select id="connectionType" name="connectionType" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
-                            <option value="" disabled selected>Select your TV connection</option>
-                            <option value="D2H">D2H</option>
-                            <option value="Airtel">Airtel</option>
-                            <option value="Jio">Jio</option>
-                            <option value="Tata Sky">Tata Sky</option>
-                            <option value="UCN">UCN</option>
-                            <option value="Free Dish">Free Dish</option>
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <i class="fas fa-chevron-down text-gray-500"></i>
+                    </div>
+                    <!-- Charge Amount -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Charge (₹)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-rupee-sign text-purple-500"></i>
+                            </div>
+                            <input type="number" id="charge" name="charge" required min="0" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="Enter charge">
+                            <div class="invalid-feedback">Please enter charge amount</div>
                         </div>
                     </div>
                 </div>
-                <!-- Charge Amount -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Charge Amount (in ₹)</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-rupee-sign text-purple-500"></i>
-                        </div>
-                        <input type="number" id="charge" name="charge" required min="0" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="Enter charge">
-                        <div class="invalid-feedback">Please enter charge amount</div>
-                    </div>
-                </div>
-                <!-- End Date -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">End Date (MM/YY)</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-calendar-alt text-purple-500"></i>
-                        </div>
-                        <input type="text" id="endDate" name="endDate" required pattern="^(0[1-9]|1[0-2])\/(\d{2})$" maxlength="5" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="MM/YY" autocomplete="off">
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">/</span>
-                        <div class="invalid-feedback">Please enter end date in MM/YY format (with slash)</div>
-                    </div>
-                </div>
-                <!-- Location -->
-                <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
-                    <div class="flex items-center">
-                        <i class="fas fa-location-dot text-2xl location-dot"></i>
-                        <div class="ml-3">
-                            <div class="font-medium">Location Capture</div>
-                            <div class="text-sm text-gray-400">We'll automatically capture your location for service</div>
+                <!-- End Date and Remarks Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- End Date Dropdown -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">End Date (MM/YY)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-calendar-alt text-purple-500"></i>
+                            </div>
+                            <select id="endDate" name="endDate" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                                <option value="" disabled selected>Select month</option>
+                                <option value="08/25">August/25</option>
+                                <option value="09/25">September/25</option>
+                                <option value="10/25">October/25</option>
+                                <option value="11/25">November/25</option>
+                                <option value="12/25">December/25</option>
+                                <option value="01/26">January/26</option>
+                                <option value="02/26">February/26</option>
+                                <option value="03/26">March/26</option>
+                                <option value="04/26">April/26</option>
+                                <option value="05/26">May/26</option>
+                                <option value="06/26">June/26</option>
+                                <option value="07/26">July/26</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </div>
+                            <div class="invalid-feedback">Please select end date</div>
                         </div>
                     </div>
-                    <div id="locationStatus" class="mt-3 p-2 bg-black/40 rounded text-purple-300 text-sm flex items-center">
-                        <i class="fas fa-sync-alt fa-spin mr-2"></i>
-                        <span>Capturing your location...</span>
-                    </div>
-                    <input type="hidden" id="latitude" name="latitude">
-                    <input type="hidden" id="longitude" name="longitude">
-                </div>
-                <!-- Remarks (dropdown with Other and optional textbox) -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
-                    <div class="relative mb-3">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <i class="fas fa-comment text-purple-500"></i>
+                    <!-- Remarks (dropdown with Other and optional textbox) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
+                        <div class="relative mb-3">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <i class="fas fa-comment text-purple-500"></i>
+                            </div>
+                            <select id="remarksDropdown" name="remarksDropdown" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                                <option value="" disabled selected>Select a remark</option>
+                                <option value="NANTAR SANGU">NANTAR SANGU</option>
+                                <option value="NAHI LAWAYCHA">NAHI LAWAYCHA</option>
+                                <option value="NAHI">NAHI</option>
+                                <option value="NAHI LAWAT">NAHI LAWAT</option>
+                                <option value="HOME LOCKED">HOME LOCKED</option>
+                                <option value="NANTR SANGU">NANTR SANGU</option>
+                                <option value="UCN">UCN</option>
+                                <option value="NO TV AAHE">NO TV AAHE</option>
+                                <option value="NAHI PAHIJE">NAHI PAHIJE</option>
+                                <option value="GHAR VIRAN AHE">GHAR VIRAN AHE</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <i class="fas fa-chevron-down text-gray-500"></i>
+                            </div>
                         </div>
-                        <select id="remarksDropdown" name="remarksDropdown" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
-                            <option value="" disabled selected>Select a remark</option>
-                            <option value="NANTAR SANGU">NANTAR SANGU</option>
-                            <option value="NAHI LAWAYCHA">NAHI LAWAYCHA</option>
-                            <option value="NAHI">NAHI</option>
-                            <option value="NAHI LAWAT">NAHI LAWAT</option>
-                            <option value="HOME LOCKED">HOME LOCKED</option>
-                            <option value="NANTR SANGU">NANTR SANGU</option>
-                            <option value="UCN">UCN</option>
-                            <option value="NO TV AAHE">NO TV AAHE</option>
-                            <option value="NAHI PAHIJE">NAHI PAHIJE</option>
-                            <option value="GHAR VIRAN AHE">GHAR VIRAN AHE</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        <div id="otherRemarksDiv" style="display: none;">
+                            <textarea id="otherRemarks" name="otherRemarks" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-20 mt-2" placeholder="Enter other remarks"></textarea>
                         </div>
-                    </div>
-                    <div id="otherRemarksDiv" style="display: none;">
-                        <textarea id="otherRemarks" name="otherRemarks" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-24 mt-2" placeholder="Enter other remarks"></textarea>
                     </div>
                 </div>
                 <!-- Comments (optional) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Comments (optional)</label>
-                    <textarea id="comments" name="comments" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-24" placeholder="Any additional comments"></textarea>
+                    <textarea id="comments" name="comments" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3 focus:outline-none h-20" placeholder="Any additional comments"></textarea>
                 </div>
+                <!-- Hidden Location Inputs -->
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
                 <div>
                     <button type="submit" class="w-full btn-purple text-white font-medium rounded-lg py-3.5 px-4 transition">
                         <i class="fas fa-paper-plane mr-2"></i>Submit Request
@@ -346,58 +358,26 @@
         </div>
     </div>
     <script>
-        // Helper to update location status
-        function setLocationStatus(iconClass, colorClass, message, pulse = false) {
-            const status = document.getElementById('locationStatus');
-            status.innerHTML = `<i class="fas ${iconClass} ${colorClass} mr-2"></i><span>${message}</span>`;
-            if (pulse) status.classList.add('pulse');
-            else status.classList.remove('pulse');
-        }
-        // Robust location capture
+        // Hide location UI, but still capture location
+        function setLocationStatus() {}
         function getLocation() {
-            setLocationStatus('fa-sync-alt fa-spin', 'text-purple-300', 'Capturing your location...');
             let locationResolved = false;
             if (navigator.geolocation) {
-                const geoTimeout = setTimeout(() => {
-                    if (!locationResolved) {
-                        setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', 'Location request timed out. Please enable location and try again.', true);
-                    }
-                }, 12000);
+                const geoTimeout = setTimeout(() => {}, 12000);
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         locationResolved = true;
                         clearTimeout(geoTimeout);
                         document.getElementById('latitude').value = position.coords.latitude;
                         document.getElementById('longitude').value = position.coords.longitude;
-                        setLocationStatus('fa-check-circle', 'text-green-500', `Location captured: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`);
                     },
-                    function(error) {
-                        locationResolved = true;
-                        clearTimeout(geoTimeout);
-                        let message = '';
-                        switch (error.code) {
-                            case error.PERMISSION_DENIED:
-                                message = "Location permission denied. Please allow access in your browser.";
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                message = "Location unavailable. Check your device or connection.";
-                                break;
-                            case error.TIMEOUT:
-                                message = "Location timed out. Please try again.";
-                                break;
-                            default:
-                                message = "An unknown error occurred while fetching location.";
-                        }
-                        setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', message, true);
-                    },
+                    function() {},
                     {
                         enableHighAccuracy: true,
                         timeout: 10000,
                         maximumAge: 0
                     }
                 );
-            } else {
-                setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', 'Geolocation is not supported by this browser.', true);
             }
         }
         document.addEventListener('DOMContentLoaded', function () {
@@ -462,14 +442,6 @@
                 } else {
                     document.getElementById('connectionError').style.display = 'none';
                 }
-                // Location check
-                const latitude = document.getElementById('latitude').value;
-                const longitude = document.getElementById('longitude').value;
-                if (!latitude || !longitude) {
-                    alert('We need your location to provide service. Please enable location services.');
-                    document.getElementById('locationStatus').classList.add('pulse');
-                    return;
-                }
                 // Remarks validation
                 let remarksValue = remarksDropdown.value;
                 let finalRemarks = remarksValue;
@@ -483,6 +455,13 @@
                         document.getElementById('otherRemarks').classList.remove('border-red-500');
                         finalRemarks = otherRemarks;
                     }
+                }
+                // Location check (hidden, but still required)
+                const latitude = document.getElementById('latitude').value;
+                const longitude = document.getElementById('longitude').value;
+                if (!latitude || !longitude) {
+                    alert('We need your location to provide service. Please enable location services.');
+                    return;
                 }
                 if (!isValid) {
                     if (firstInvalid && firstInvalid.scrollIntoView) firstInvalid.scrollIntoView({behavior: "smooth"});
@@ -513,7 +492,6 @@
                     <div><span class="text-gray-500">Connection:</span> ${formData.connectionType}</div>
                     <div><span class="text-gray-500">Charge:</span> ₹${formData.charge}</div>
                     <div><span class="text-gray-500">End Date:</span> ${formData.endDate}</div>
-                    <div><span class="text-gray-500">Location:</span> ${latitude.substring(0,7)}, ${longitude.substring(0,7)}</div>
                     <div><span class="text-gray-500">Remarks:</span> ${formData.remarks}</div>
                     <div><span class="text-gray-500">Comments:</span> ${formData.comments ? formData.comments : 'N/A'}</div>
                     <div><span class="text-gray-500">Service ETA:</span> Within 24 hours</div>
