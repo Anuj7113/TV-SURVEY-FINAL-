@@ -24,7 +24,6 @@
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
         .gradient-border {
             position: relative;
             z-index: 0;
@@ -36,7 +35,6 @@
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
         }
-        
         .gradient-border::before {
             content: '';
             position: absolute;
@@ -48,65 +46,52 @@
             border-radius: 16px;
             z-index: -1;
         }
-        
         .glow-effect {
             box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
         }
-        
         .btn-purple {
             background: linear-gradient(135deg, #8B5CF6, #7C3AED);
             transition: all 0.3s ease;
         }
-        
         .btn-purple:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(109, 40, 217, 0.4);
         }
-        
         .pulse {
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(109, 40, 217, 0); }
             100% { box-shadow: 0 0 0 0 rgba(109, 40, 217, 0); }
         }
-        
         input:focus, textarea:focus, select:focus {
             border-color: #8B5CF6 !important;
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important;
         }
-        
         input:invalid, textarea:invalid, select:invalid {
             border-color: #ef4444 !important;
         }
-        
         .invalid-feedback {
             color: #ef4444;
             font-size: 0.875rem;
             margin-top: 0.25rem;
             display: none;
         }
-        
         input:invalid + .invalid-feedback,
         textarea:invalid + .invalid-feedback,
         select:invalid + .invalid-feedback {
             display: block;
         }
-        
         .location-dot {
             color: #7C3AED;
         }
-        
         .success-container {
             display: none;
         }
-        
         .fade-in {
             animation: fadeIn 0.6s ease forwards;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -128,8 +113,7 @@
                     </div>
                 </div>
             </div>
-            
-            <form id="tvServiceForm" class="bg-gray-900 rounded-b-xl p-6 md:p-8 space-y-6">
+            <form id="tvServiceForm" class="bg-gray-900 rounded-b-xl p-6 md:p-8 space-y-6" autocomplete="off">
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
                     <div class="relative">
@@ -140,7 +124,6 @@
                         <div class="invalid-feedback">Please enter your full name</div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Address</label>
                     <div class="relative">
@@ -151,35 +134,33 @@
                         <div class="invalid-feedback">Please enter your address</div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fas fa-phone text-purple-500"></i>
                         </div>
-                        <input type="tel" id="phone" name="phone" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="(123) 456-7890" pattern="[0-9]{10}">
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="9876543210">
                         <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 pt-3">
                             <i class="fas fa-comment text-purple-500"></i>
                         </div>
-                        <textarea id="remarks" name="remarks" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none h-32" placeholder="Describe your TV issue or any special requirements"></textarea>
+                        <textarea id="remarks" name="remarks" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none h-32" placeholder="Describe your problem or service needed"></textarea>
+                        <div class="invalid-feedback">Please enter remarks</div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-3">Which type of TV do you have?<span class="text-red-500">*</span></label>
                     <div class="invalid-feedback mb-2" id="tvTypeError">Please select your TV type</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                             <input type="radio" id="crt" name="tvType" value="CRT" class="hidden peer" required>
-                            <label for="crt" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30 hover:bg-gray-750 transition">
+                            <label for="crt" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
                                 <div class="flex items-center w-full">
                                     <div class="bg-black p-2 rounded mr-3">
                                         <i class="fas fa-tv text-purple-500"></i>
@@ -191,10 +172,9 @@
                                 </div>
                             </label>
                         </div>
-                        
                         <div>
                             <input type="radio" id="led" name="tvType" value="LED" class="hidden peer" required>
-                            <label for="led" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30 hover:bg-gray-750 transition">
+                            <label for="led" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
                                 <div class="flex items-center w-full">
                                     <div class="bg-black p-2 rounded mr-3">
                                         <i class="fas fa-tv text-purple-500"></i>
@@ -208,7 +188,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Which TV connection do you have?<span class="text-red-500">*</span></label>
                     <div class="invalid-feedback mb-2" id="connectionError">Please select your TV connection</div>
@@ -230,7 +209,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
                     <div class="flex items-center">
                         <i class="fas fa-location-dot text-2xl location-dot"></i>
@@ -246,7 +224,6 @@
                     <input type="hidden" id="latitude" name="latitude">
                     <input type="hidden" id="longitude" name="longitude">
                 </div>
-                
                 <div>
                     <button type="submit" class="w-full btn-purple text-white font-medium rounded-lg py-3.5 px-4 transition">
                         <i class="fas fa-paper-plane mr-2"></i>Submit Request
@@ -254,7 +231,6 @@
                 </div>
             </form>
         </div>
-        
         <!-- Success Message -->
         <div id="successContainer" class="success-container">
             <div class="gradient-border glow-effect fade-in">
@@ -279,181 +255,151 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Get user location
-        function getLocation() {
-            if (navigator.geolocation) {
-               navigator.geolocation.getCurrentPosition(
-    function(position) {
-        document.getElementById('latitude').value = position.coords.latitude;
-        document.getElementById('longitude').value = position.coords.longitude;
-        document.getElementById('locationStatus').innerHTML = `
-            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-            <span>Location captured: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}</span>
-        `;
-    },
-    function(error) {
-        let message = '';
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                message = "Location permission denied. Please allow access.";
-                break;
-            case error.POSITION_UNAVAILABLE:
-                message = "Location unavailable. Try again.";
-                break;
-            case error.TIMEOUT:
-                message = "Location timed out. Try again.";
-                break;
-            default:
-                message = "An unknown error occurred.";
+        // Helper to update location status
+        function setLocationStatus(iconClass, colorClass, message, pulse = false) {
+            const status = document.getElementById('locationStatus');
+            status.innerHTML = `<i class="fas ${iconClass} ${colorClass} mr-2"></i><span>${message}</span>`;
+            if (pulse) status.classList.add('pulse');
+            else status.classList.remove('pulse');
         }
-
-        document.getElementById('locationStatus').innerHTML = `
-            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-            <span>${message}</span>
-        `;
-        document.getElementById('locationStatus').classList.add('pulse');
-    },
-    {
-        enableHighAccuracy: true,
-        timeout: 10000,  // ⏱️ 10-second limit
-        maximumAge: 0
-    }
-);
-
-        // Form submission handler
-        document.getElementById('tvServiceForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate form
-            const form = e.target;
-            let isValid = true;
-            
-            // Check all required fields
-            let firstInvalid = null;
-            
-            // Text inputs, textarea and select
-            const requiredInputs = form.querySelectorAll('[required]');
-            requiredInputs.forEach(input => {
-                input.classList.remove('border-red-500');
-                if (!input.value) {
-                    input.classList.add('border-red-500');
-                    isValid = false;
-                    if (!firstInvalid) firstInvalid = input;
-                }
-            });
-            
-            // Radio buttons (TV Type)
-            const tvTypeChecked = form.querySelector('input[name="tvType"]:checked');
-            if (!tvTypeChecked) {
-                document.getElementById('tvTypeError').style.display = 'block';
-                isValid = false;
-                if (!firstInvalid) firstInvalid = document.getElementById('tvTypeError');
+        // Robust location capture
+        function getLocation() {
+            setLocationStatus('fa-sync-alt fa-spin', 'text-purple-300', 'Capturing your location...');
+            let locationResolved = false;
+            if (navigator.geolocation) {
+                const geoTimeout = setTimeout(() => {
+                    if (!locationResolved) {
+                        setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', 'Location request timed out. Please enable location and try again.', true);
+                    }
+                }, 12000);
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        locationResolved = true;
+                        clearTimeout(geoTimeout);
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                        setLocationStatus('fa-check-circle', 'text-green-500', `Location captured: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`);
+                    },
+                    function(error) {
+                        locationResolved = true;
+                        clearTimeout(geoTimeout);
+                        let message = '';
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                message = "Location permission denied. Please allow access in your browser.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                message = "Location unavailable. Check your device or connection.";
+                                break;
+                            case error.TIMEOUT:
+                                message = "Location timed out. Please try again.";
+                                break;
+                            default:
+                                message = "An unknown error occurred while fetching location.";
+                        }
+                        setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', message, true);
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0
+                    }
+                );
             } else {
-                document.getElementById('tvTypeError').style.display = 'none';
+                setLocationStatus('fa-exclamation-triangle', 'text-yellow-500', 'Geolocation is not supported by this browser.', true);
             }
-            
-            // Connection Type select
-            <script>
-window.addEventListener('DOMContentLoaded', function () {
-    // Get connection type
-    let connectionType = 'unknown';
-
-    if (navigator.connection) {
-        connectionType = navigator.connection.effectiveType;
-    }
-
-    // Set connection type in hidden input
-    const connInput = document.getElementById('connection_type');
-    if (connInput) {
-        connInput.value = connectionType;
-    }
-
-    // Get geolocation
-    if ('geolocation' in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            document.getElementById('latitude').value = position.coords.latitude;
-            document.getElementById('longitude').value = position.coords.longitude;
-        }, function (error) {
-            console.error('Geolocation error:', error);
-        });
-    }
-});
-</script>
-
-            // Check location was captured
-            const latitude = document.getElementById('latitude').value;
-            const longitude = document.getElementById('longitude').value;
-            
-            if(!latitude || !longitude) {
-                alert('We need your location to provide service. Please enable location services.');
-                document.getElementById('locationStatus').classList.add('pulse');
-                return;
-            }
-            
-            // Prepare form data
-            const tvType = document.querySelector('input[name="tvType"]:checked');
-const connectionType = document.getElementById('connectionType');
-
-const formData = {
-    name: document.getElementById('name').value,
-    address: document.getElementById('address').value,
-    phone: document.getElementById('phone').value,
-    remarks: document.getElementById('remarks').value,
-    tvType: tvType ? tvType.value : '',
-    connectionType: connectionType.value || '',
-    latitude: document.getElementById('latitude').value,
-    longitude: document.getElementById('longitude').value
-};
-
-            
-            
-            // Prepare service details for display
-            document.getElementById('serviceDetails').innerHTML = `
-                <div><span class="text-gray-500">Name:</span> ${formData.name}</div>
-                <div><span class="text-gray-500">TV Type:</span> ${formData.tvType}</div>
-                <div><span class="text-gray-500">Connection:</span> ${formData.connectionType}</div>
-                <div><span class="text-gray-500">Location:</span> ${latitude.substring(0,7)}, ${longitude.substring(0,7)}</div>
-                <div><span class="text-gray-500">Service ETA:</span> Within 24 hours</div>
-            `;
-            
-            // Disable submit button
-            const submitBtn = document.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
-
-            // Show the success container
-            document.getElementById('registrationForm').classList.add('hidden');
-            document.getElementById('successContainer').style.display = 'block';
-            
-            // Send data to Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbyfmDkX1VJTr48jSpnZh9RpoKGX5Zlekkk3i8XRps29sBpDHmYxZCLnEsLibxtD_FDU/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(() => {
-                // In 'no-cors' mode we can't read the response directly
-                console.log('Request sent (response details not available in no-cors mode)');
-                document.getElementById('errorMessage').classList.add('hidden');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('errorMessage').classList.remove('hidden');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            getLocation();
+            document.getElementById('tvServiceForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+                let firstInvalid = null;
+                const form = e.target;
+                const requiredInputs = form.querySelectorAll('[required]');
+                requiredInputs.forEach(input => {
+                    input.classList.remove('border-red-500');
+                    if (!input.value) {
+                        input.classList.add('border-red-500');
+                        isValid = false;
+                        if (!firstInvalid) firstInvalid = input;
+                    }
+                });
+                // Radio: tvType
+                const tvTypeChecked = form.querySelector('input[name="tvType"]:checked');
+                if (!tvTypeChecked) {
+                    document.getElementById('tvTypeError').style.display = 'block';
+                    isValid = false;
+                    if (!firstInvalid) firstInvalid = document.getElementById('tvTypeError');
+                } else {
+                    document.getElementById('tvTypeError').style.display = 'none';
+                }
+                // Select: connectionType
+                const connectionType = document.getElementById('connectionType');
+                if (!connectionType.value) {
+                    document.getElementById('connectionError').style.display = 'block';
+                    isValid = false;
+                    if (!firstInvalid) firstInvalid = document.getElementById('connectionError');
+                } else {
+                    document.getElementById('connectionError').style.display = 'none';
+                }
+                // Location check
+                const latitude = document.getElementById('latitude').value;
+                const longitude = document.getElementById('longitude').value;
+                if (!latitude || !longitude) {
+                    alert('We need your location to provide service. Please enable location services.');
+                    document.getElementById('locationStatus').classList.add('pulse');
+                    return;
+                }
+                if (!isValid) {
+                    if (firstInvalid && firstInvalid.scrollIntoView) firstInvalid.scrollIntoView({behavior: "smooth"});
+                    return;
+                }
+                // Gather all MCQ/option inputs here
+                const formData = {
+                    name: document.getElementById('name').value,
+                    address: document.getElementById('address').value,
+                    phone: document.getElementById('phone').value,
+                    remarks: document.getElementById('remarks').value,
+                    tvType: tvTypeChecked ? tvTypeChecked.value : '',
+                    connectionType: connectionType.value || '',
+                    latitude: latitude,
+                    longitude: longitude
+                };
+                // Show service details
+                document.getElementById('serviceDetails').innerHTML = `
+                    <div><span class="text-gray-500">Name:</span> ${formData.name}</div>
+                    <div><span class="text-gray-500">TV Type:</span> ${formData.tvType}</div>
+                    <div><span class="text-gray-500">Connection:</span> ${formData.connectionType}</div>
+                    <div><span class="text-gray-500">Location:</span> ${latitude.substring(0,7)}, ${longitude.substring(0,7)}</div>
+                    <div><span class="text-gray-500">Service ETA:</span> Within 24 hours</div>
+                `;
+                // Disable submit button
+                const submitBtn = document.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+                // Show success container
+                document.getElementById('registrationForm').classList.add('hidden');
+                document.getElementById('successContainer').style.display = 'block';
+                // Send data to backend
+                fetch('https://script.google.com/macros/s/AKfycbyfmDkX1VJTr48jSpnZh9RpoKGX5Zlekkk3i8XRps29sBpDHmYxZCLnEsLibxtD_FDU/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(() => {
+                    document.getElementById('errorMessage').classList.add('hidden');
+                })
+                .catch(error => {
+                    document.getElementById('errorMessage').classList.remove('hidden');
+                });
             });
-        });
-
-        // Initialize location capture
-        getLocation();
-
-        // Retry button functionality
-        document.getElementById('retryButton')?.addEventListener('click', function() {
-            document.getElementById('errorMessage').classList.add('hidden');
-            document.getElementById('tvServiceForm').dispatchEvent(new Event('submit'));
+            document.getElementById('retryButton')?.addEventListener('click', function() {
+                document.getElementById('errorMessage').classList.add('hidden');
+                document.getElementById('tvServiceForm').dispatchEvent(new Event('submit'));
+            });
         });
     </script>
 </body>
