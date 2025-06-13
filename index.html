@@ -136,71 +136,30 @@
                         <div class="invalid-feedback">Please enter house number</div>
                     </div>
                 </div>
-                <!-- Ward/Colony Selection -->
+                <!-- Ward/Colony Selection (Dropdown) -->
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-1">Select your Ward/Colony</label>
-                    <div class="invalid-feedback mb-2" id="wardError">Please select your ward/colony</div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                            <input type="radio" id="civilward" name="ward" value="Civil Ward" class="hidden peer" required>
-                            <label for="civilward" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Civil Ward</span>
-                            </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-city text-purple-500"></i>
                         </div>
-                        <div>
-                            <input type="radio" id="toliward" name="ward" value="Toli Ward" class="hidden peer" required>
-                            <label for="toliward" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Toli Ward</span>
-                            </label>
+                        <select id="ward" name="ward" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none appearance-none">
+                            <option value="" disabled selected>Select your ward/colony</option>
+                            <option value="Civil Ward">Civil Ward</option>
+                            <option value="Toli Ward">Toli Ward</option>
+                            <option value="Panchasheel Ward">Panchasheel Ward</option>
+                            <option value="Shivaji Ward">Shivaji Ward</option>
+                            <option value="Nursery Colony">Nursery Colony</option>
+                            <option value="Srinagar Colony">Srinagar Colony</option>
+                            <option value="Pragati Colony">Pragati Colony</option>
+                            <option value="Sendurwafa">Sendurwafa</option>
+                            <option value="Jamnapur">Jamnapur</option>
+                            <option value="Khairlanji">Khairlanji</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <i class="fas fa-chevron-down text-gray-500"></i>
                         </div>
-                        <div>
-                            <input type="radio" id="panchasheelward" name="ward" value="Panchasheel Ward" class="hidden peer" required>
-                            <label for="panchasheelward" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Panchasheel Ward</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="shivajiward" name="ward" value="Shivaji Ward" class="hidden peer" required>
-                            <label for="shivajiward" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Shivaji Ward</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="nurserycolony" name="ward" value="Nursery Colony" class="hidden peer" required>
-                            <label for="nurserycolony" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Nursery Colony</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="srinagarcolony" name="ward" value="Srinagar Colony" class="hidden peer" required>
-                            <label for="srinagarcolony" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Srinagar Colony</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="pragaticolony" name="ward" value="Pragati Colony" class="hidden peer" required>
-                            <label for="pragaticolony" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Pragati Colony</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="sendurwafa" name="ward" value="Sendurwafa" class="hidden peer" required>
-                            <label for="sendurwafa" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Sendurwafa</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="jamnapur" name="ward" value="Jamnapur" class="hidden peer" required>
-                            <label for="jamnapur" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Jamnapur</span>
-                            </label>
-                        </div>
-                        <div>
-                            <input type="radio" id="khairlanji" name="ward" value="Khairlanji" class="hidden peer" required>
-                            <label for="khairlanji" class="flex items-center p-3 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer peer-checked:border-purple-500 peer-checked:bg-purple-900/30">
-                                <span class="font-medium">Khairlanji</span>
-                            </label>
-                        </div>
+                        <div class="invalid-feedback" id="wardError">Please select your ward/colony</div>
                     </div>
                 </div>
                 <!-- Address -->
@@ -223,17 +182,6 @@
                         </div>
                         <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none" placeholder="9876543210">
                         <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
-                    </div>
-                </div>
-                <!-- Remarks -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 pt-3">
-                            <i class="fas fa-comment text-purple-500"></i>
-                        </div>
-                        <textarea id="remarks" name="remarks" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none h-32" placeholder="Describe your problem or service needed"></textarea>
-                        <div class="invalid-feedback">Please enter remarks</div>
                     </div>
                 </div>
                 <!-- TV Type -->
@@ -330,6 +278,17 @@
                     </div>
                     <input type="hidden" id="latitude" name="latitude">
                     <input type="hidden" id="longitude" name="longitude">
+                </div>
+                <!-- Remarks (at the very end) -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Remarks</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 pt-3">
+                            <i class="fas fa-comment text-purple-500"></i>
+                        </div>
+                        <textarea id="remarks" name="remarks" required class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 p-3 focus:outline-none h-32" placeholder="Describe your problem or service needed"></textarea>
+                        <div class="invalid-feedback">Please enter remarks</div>
+                    </div>
                 </div>
                 <div>
                     <button type="submit" class="w-full btn-purple text-white font-medium rounded-lg py-3.5 px-4 transition">
@@ -447,9 +406,9 @@
                 } else {
                     document.getElementById('tvTypeError').style.display = 'none';
                 }
-                // Radio: ward
-                const wardChecked = form.querySelector('input[name="ward"]:checked');
-                if (!wardChecked) {
+                // Dropdown: ward
+                const wardSelect = document.getElementById('ward');
+                if (!wardSelect.value) {
                     document.getElementById('wardError').style.display = 'block';
                     isValid = false;
                     if (!firstInvalid) firstInvalid = document.getElementById('wardError');
@@ -481,16 +440,16 @@
                 const formData = {
                     name: document.getElementById('name').value,
                     houseNumber: document.getElementById('houseNumber').value,
-                    ward: wardChecked ? wardChecked.value : '',
+                    ward: wardSelect.value || '',
                     address: document.getElementById('address').value,
                     phone: document.getElementById('phone').value,
-                    remarks: document.getElementById('remarks').value,
                     tvType: tvTypeChecked ? tvTypeChecked.value : '',
                     connectionType: connectionType.value || '',
                     charge: document.getElementById('charge').value,
                     endDate: document.getElementById('endDate').value,
                     latitude: latitude,
-                    longitude: longitude
+                    longitude: longitude,
+                    remarks: document.getElementById('remarks').value
                 };
                 // Show service details
                 document.getElementById('serviceDetails').innerHTML = `
@@ -502,6 +461,7 @@
                     <div><span class="text-gray-500">Charge:</span> ₹${formData.charge}</div>
                     <div><span class="text-gray-500">End Date:</span> ${formData.endDate}</div>
                     <div><span class="text-gray-500">Location:</span> ${latitude.substring(0,7)}, ${longitude.substring(0,7)}</div>
+                    <div><span class="text-gray-500">Remarks:</span> ${formData.remarks}</div>
                     <div><span class="text-gray-500">Service ETA:</span> Within 24 hours</div>
                 `;
                 // Disable submit button
